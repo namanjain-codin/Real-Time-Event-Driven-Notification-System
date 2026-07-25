@@ -7,7 +7,7 @@ const initSocket = (server) => {
   cors: {
     origin: [
       'http://localhost:5173',
-      'https://notification-system-frontend.vercel.app'  // your actual Vercel URL
+      'https://real-time-event-driven-notification-system.vercel.app'
     ],
     credentials: true
   }
