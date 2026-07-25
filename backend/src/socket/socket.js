@@ -4,8 +4,14 @@ let io;
 
 const initSocket = (server) => {
   io = new Server(server, {
-    cors: { origin: '*' }
-  });
+  cors: {
+    origin: [
+      'http://localhost:5173',
+      'https://notification-system-frontend.vercel.app'  // your actual Vercel URL
+    ],
+    credentials: true
+  }
+});
 
   io.on('connection', (socket) => {
     console.log('Socket connected:', socket.id);

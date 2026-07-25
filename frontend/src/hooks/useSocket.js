@@ -7,23 +7,15 @@ const useSocket = (userId, onNotification) => {
   useEffect(() => {
     if (!userId) return;
 
-    // Connect to backend
-    socketRef.current = io('http://localhost:5000');
-
-    // Join personal room
+    socketRef.current = io(import.meta.env.VITE_SOCKET_URL);
     socketRef.current.emit('join', userId);
 
-    // Listen for incoming notifications
     socketRef.current.on('notification', (data) => {
-      console.log('Real-time notification received:', data);
       onNotification(data);
     });
 
-    // Cleanup on unmount
     return () => {
-      if (socketRef.current) {
-        socketRef.current.disconnect();
-      }
+      if (socketRef.current) socketRef.current.disconnect();
     };
   }, [userId]);
 };
