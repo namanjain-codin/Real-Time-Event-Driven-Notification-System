@@ -5,17 +5,11 @@ let io;
 const initSocket = (server) => {
   io = new Server(server, {
   cors: {
-    origin: (origin, callback) => {
-      const allowed = [
-        'http://localhost:5173',
-        /\.vercel\.app$/
-      ];
-      if (!origin || allowed.some(o => typeof o === 'string' ? o === origin : o.test(origin))) {
-        callback(null, true);
-      } else {
-        callback(new Error('Not allowed by CORS'));
-      }
-    },
+    origin: [
+      'http://localhost:5173',
+      'https://real-time-event-driven-notification.vercel.app',
+      'https://real-time-event-driven-notification-system-crv8mt24a.vercel.app'
+    ],
     credentials: true
   }
 });
