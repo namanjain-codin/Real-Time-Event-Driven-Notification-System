@@ -72,4 +72,14 @@ const getMe = async (req, res) => {
   }
 };
 
-module.exports = { register, login, getMe };
+const getAllUsers = async (req, res) => {
+  try {
+    const users = await User.find({ _id: { $ne: req.user._id } })
+      .select('_id name email');  // exclude self
+    res.json({ users });
+  } catch (error) {
+    res.status(500).json({ message: 'Server error', error: error.message });
+  }
+};
+
+module.exports = { register, login, getMe, getAllUsers };

@@ -6,8 +6,9 @@ const http = require('http');
 const connectDB = require('./src/config/db');
 const { publisher, subscriber } = require('./src/config/redis');
 const { initSocket } = require('./src/socket/socket');
-const { startConsumer } = require('./src/services/consumer.service'); // ADD THIS
+const { startConsumer } = require('./src/services/consumer.service');
 
+const adminRoutes = require('./src/routes/admin.routes');
 const authRoutes = require('./src/routes/auth.routes');
 const notificationRoutes = require('./src/routes/notification.routes');
 
@@ -19,6 +20,7 @@ app.use(express.json());
 
 app.use('/api/auth', authRoutes);
 app.use('/api/notifications', notificationRoutes);
+app.use('/api/admin', adminRoutes);
 
 app.get('/', (req, res) => res.json({ status: 'Server running' }));
 

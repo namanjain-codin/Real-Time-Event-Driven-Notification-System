@@ -5,11 +5,13 @@ const { publishEvent } = require('../services/producer.service');
 // Manually trigger a notification event (simulates an order, payment, etc.)
 const publish = async (req, res) => {
   try {
-    const { type, title, message, channels, metadata } = req.body;
+    const { type, title, message, channels, metadata, targetUserId } = req.body;
 
-    // req.user is attached by the protect middleware
+    // If targetUserId provided, send to that user. Otherwise send to self.
+    const recipientId = targetUserId || req.user._id;
+
     const notification = await publishEvent(type, {
-      userId: req.user._id,
+      userId: recipientId,
       title,
       message,
       channels: channels || ['in-app'],
