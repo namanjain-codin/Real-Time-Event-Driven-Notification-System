@@ -19,6 +19,7 @@ const server = http.createServer(app);
 app.use(cors({
   origin: [
     'http://localhost:5173',
+    'https://real-time-event-driven-notification-system-crv8mt24a.vercel.app',
     'https://real-time-event-driven-notification-system.vercel.app'
   ],
   credentials: true
