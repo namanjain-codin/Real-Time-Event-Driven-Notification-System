@@ -33,6 +33,11 @@ const Login = ({ onSwitch }) => {
           Don't have an account?{' '}
           <span style={{ color: '#2196F3', cursor: 'pointer' }} onClick={onSwitch}>Register</span>
         </p>
+
+        <br />
+        <p>
+          Note: This Project is deployed on the free tier of render, which goes to sleep after 15 minutes of inactivity, and takes 50 seconds to spin up after the first http request, So if it is taking a longer time to respond initially, this is likely the case. Thank You for your patience.
+        </p>
       </div>
     </div>
   );
